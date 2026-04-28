@@ -1,5 +1,7 @@
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost'
-export type ButtonSize = 'lg' | 'md' | 'sm'
+import { useState } from 'react'
+
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
+export type ButtonSize = 'xl' | 'lg' | 'md' | 'sm'
 
 export interface ButtonProps {
   variant?: ButtonVariant
@@ -11,91 +13,127 @@ export interface ButtonProps {
   onClick?: () => void
 }
 
+const SIZE: Record<ButtonSize, {
+  minHeight: string
+  padding: string
+  fontSize: string
+  lineHeight: string
+  borderRadius: string
+  spinnerSize: string
+}> = {
+  xl: { minHeight: '56px', padding: '0 32px', fontSize: '17px', lineHeight: '25px', borderRadius: '14px', spinnerSize: '28px' },
+  lg: { minHeight: '48px', padding: '0 24px', fontSize: '17px', lineHeight: '25px', borderRadius: '12px', spinnerSize: '26px' },
+  md: { minHeight: '40px', padding: '0 20px', fontSize: '15px', lineHeight: '21px', borderRadius: '10px', spinnerSize: '22px' },
+  sm: { minHeight: '32px', padding: '0 14px', fontSize: '13px', lineHeight: '19px', borderRadius: '8px',  spinnerSize: '20px' },
+}
+
+const VARIANT: Record<ButtonVariant, {
+  default:  { bg: string; color: string; border: string }
+  hover:    { bg: string; border: string }
+  disabled: { bg: string; color: string; border: string }
+  fontWeight: number
+}> = {
+  primary: {
+    default:  { bg: 'var(--color-primary-500)', color: 'var(--color-neutral-000)', border: 'none' },
+    hover:    { bg: 'var(--color-primary-600)', border: 'none' },
+    disabled: { bg: 'var(--color-neutral-050)', color: 'var(--color-neutral-400)', border: 'none' },
+    fontWeight: 600,
+  },
+  secondary: {
+    default:  { bg: 'var(--color-neutral-100)', color: 'var(--color-neutral-700)', border: 'none' },
+    hover:    { bg: 'var(--color-neutral-200)', border: 'none' },
+    disabled: { bg: 'var(--color-neutral-050)', color: 'var(--color-neutral-400)', border: 'none' },
+    fontWeight: 600,
+  },
+  outline: {
+    default:  { bg: 'transparent', color: 'var(--color-neutral-700)', border: '1px solid var(--color-neutral-100)' },
+    hover:    { bg: 'var(--color-neutral-050)', border: '1px solid var(--color-neutral-100)' },
+    disabled: { bg: 'var(--color-neutral-050)', color: 'var(--color-neutral-400)', border: 'none' },
+    fontWeight: 500,
+  },
+  ghost: {
+    default:  { bg: 'transparent', color: 'var(--color-neutral-700)', border: 'none' },
+    hover:    { bg: 'var(--color-neutral-050)', border: 'none' },
+    disabled: { bg: 'var(--color-neutral-050)', color: 'var(--color-neutral-400)', border: 'none' },
+    fontWeight: 500,
+  },
+  danger: {
+    default:  { bg: 'var(--color-red-500)', color: 'var(--color-neutral-000)', border: 'none' },
+    hover:    { bg: 'var(--color-red-600)', border: 'none' },
+    disabled: { bg: 'var(--color-neutral-050)', color: 'var(--color-neutral-400)', border: 'none' },
+    fontWeight: 600,
+  },
+}
+
 export function Button({
   variant = 'primary',
-  size = 'md',
+  size = 'xl',
   disabled = false,
   loading = false,
   fullWidth = false,
-  children = 'Button',
+  children = '버튼',
   onClick,
 }: ButtonProps) {
-  const sizeMap: Record<ButtonSize, React.CSSProperties> = {
-    lg: { height: '52px', padding: '0 24px', fontSize: '17px', borderRadius: '14px' },
-    md: { height: '44px', padding: '0 20px', fontSize: '15px', borderRadius: '12px' },
-    sm: { height: '34px', padding: '0 14px', fontSize: '13px', borderRadius: '10px' },
-  }
+  const [hovered, setHovered] = useState(false)
+  const [pressed, setPressed] = useState(false)
 
-  const variantMap: Record<ButtonVariant, React.CSSProperties> = {
-    primary: {
-      backgroundColor: 'var(--color-bankcow-blue)',
-      color: '#fff',
-      border: 'none',
-    },
-    secondary: {
-      backgroundColor: 'var(--color-primary-050)',
-      color: 'var(--color-bankcow-blue)',
-      border: 'none',
-    },
-    outline: {
-      backgroundColor: '#fff',
-      color: 'var(--color-bankcow-blue)',
-      border: '1.5px solid var(--color-bankcow-blue)',
-    },
-    ghost: {
-      backgroundColor: 'transparent',
-      color: 'var(--color-bankcow-blue)',
-      border: 'none',
-    },
-  }
+  const s = SIZE[size]
+  const v = VARIANT[variant]
+  const isInactive = disabled || loading
 
-  const disabledStyle: React.CSSProperties = {
-    backgroundColor: 'var(--color-neutral-100)',
-    color: 'var(--color-neutral-400)',
-    border: 'none',
-    cursor: 'not-allowed',
-  }
+  const current = isInactive
+    ? { bg: v.disabled.bg, color: v.disabled.color, border: v.disabled.border }
+    : hovered
+    ? { bg: v.hover.bg, color: v.default.color, border: v.hover.border }
+    : { bg: v.default.bg, color: v.default.color, border: v.default.border }
 
   return (
     <button
-      disabled={disabled || loading}
+      disabled={isInactive}
       onClick={onClick}
+      onMouseEnter={() => !isInactive && setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setPressed(false) }}
+      onMouseDown={() => !isInactive && setPressed(true)}
+      onMouseUp={() => setPressed(false)}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '6px',
-        fontWeight: 600,
-        cursor: disabled ? 'not-allowed' : 'pointer',
+        minHeight: s.minHeight,
+        padding: s.padding,
+        fontSize: s.fontSize,
+        lineHeight: s.lineHeight,
+        fontWeight: v.fontWeight,
+        fontFamily: 'Pretendard, sans-serif',
+        borderRadius: s.borderRadius,
+        backgroundColor: current.bg,
+        color: current.color,
+        border: current.border,
+        cursor: isInactive ? 'not-allowed' : 'pointer',
         width: fullWidth ? '100%' : undefined,
-        flexShrink: 0,
         whiteSpace: 'nowrap',
-        transition: 'opacity 0.15s ease',
-        ...sizeMap[size],
-        ...(disabled ? disabledStyle : variantMap[variant]),
-      }}
-      onMouseEnter={e => {
-        if (!disabled && !loading) (e.currentTarget as HTMLButtonElement).style.opacity = '0.85'
-      }}
-      onMouseLeave={e => {
-        if (!disabled && !loading) (e.currentTarget as HTMLButtonElement).style.opacity = '1'
+        flexShrink: 0,
+        boxSizing: 'border-box',
+        outline: 'none',
+        // Spring 인터랙션: Mass 1, Stiffness 800, Damping 40
+        transform: pressed ? 'scale(0.97)' : 'scale(1)',
+        transition: 'transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.1s ease, border-color 0.1s ease',
       }}
     >
-      {loading && (
+      {loading ? (
         <span
           style={{
-            width: '16px',
-            height: '16px',
-            border: '2px solid currentColor',
+            display: 'inline-block',
+            width: s.spinnerSize,
+            height: s.spinnerSize,
+            border: '2.5px solid currentColor',
             borderTopColor: 'transparent',
             borderRadius: '50%',
             animation: 'spin 0.7s linear infinite',
-            display: 'inline-block',
             flexShrink: 0,
           }}
         />
-      )}
-      {children}
+      ) : children}
     </button>
   )
 }
