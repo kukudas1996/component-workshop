@@ -1,4 +1,4 @@
-import { Bell, Settings, Search, Share2 } from 'lucide-react'
+import { Bell, Settings } from 'lucide-react'
 import { AppBar } from '../../components/appbar/AppBar'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -83,7 +83,7 @@ export function AppBarPage() {
             <AppBar
               type="detail"
               rightIcons={[
-                { icon: <Bell size={24} fill="currentColor" strokeWidth={0} />, showDot: false },
+                { icon: <Bell size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
               ]}
             />
           </AppBarFrame>
@@ -91,17 +91,8 @@ export function AppBarPage() {
             <AppBar
               type="detail"
               rightIcons={[
-                { icon: <Bell size={24} fill="currentColor" strokeWidth={0} /> },
-                { icon: <Settings size={24} fill="currentColor" strokeWidth={0} /> },
-              ]}
-            />
-          </AppBarFrame>
-          <AppBarFrame label="다른 아이콘 조합">
-            <AppBar
-              type="detail"
-              rightIcons={[
-                { icon: <Search size={24} /> },
-                { icon: <Share2 size={24} /> },
+                { icon: <Bell size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
+                { icon: <Settings size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
               ]}
             />
           </AppBarFrame>

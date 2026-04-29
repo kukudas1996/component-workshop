@@ -100,7 +100,7 @@ function ActionButton({
             width: '7px',
             height: '7px',
             borderRadius: '50%',
-            backgroundColor: 'var(--color-primary-500)',
+            backgroundColor: 'var(--color-red-500)',
             pointerEvents: 'none',
           }}
         />
