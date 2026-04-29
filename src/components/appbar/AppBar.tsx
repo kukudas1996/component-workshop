@@ -1,28 +1,30 @@
 import { useState } from 'react'
 
 // ── Design System Icons ────────────────────────────────────────
-// 피그마 AppBarOutlinedIcon / Back
-// 벡터 위치: bottom-[16.64%] left-0 top-[16.64%] w-[8.695px] in 24×24
+// AppBarOutlinedIcon / Back — 피그마 SVG 원본 path
 function AppBarBackIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M8.695 3.994L0 12L8.695 20.006"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M7.04052 4.28444C7.44112 3.8731 8.06527 3.90205 8.4341 4.34889C8.8028 4.7958 8.77686 5.49212 8.37632 5.90358L2.44138 12.0003L8.37632 18.0969C8.77689 18.5084 8.80289 19.2047 8.4341 19.6516C8.06522 20.0985 7.44111 20.1266 7.04052 19.7151L0.317756 12.8098C0.115028 12.6016 2.26655e-05 12.3077 0 12.0003C0 11.6928 0.115008 11.399 0.317756 11.1907L7.04052 4.28444Z"
+        fill="currentColor"
       />
     </svg>
   )
 }
 
-// 피그마 AppBarFilledIcon / Noti
-// 벡터 위치: inset-[6.21%_8.62%] in 24×24 (filled bell)
+// AppBarFilledIcon / Noti — 피그마 SVG 원본 path (neutral-400, #C1C8D6)
 function AppBarNotiIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5S10.5 3.17 10.5 4v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12.0001 1.4895C16.5613 1.4895 20.2589 5.18709 20.2589 9.74829V13.4973L21.3946 14.7209C22.5823 16.0006 21.6746 18.082 19.9288 18.0823H4.07234C2.32615 18.0823 1.41852 16.0007 2.60652 14.7209L3.74128 13.4983V9.74829C3.74128 5.18717 7.43899 1.48964 12.0001 1.4895Z"
+        fill="#C1C8D6"
+      />
+      <path
+        d="M15.875 19.5105C15.431 21.2357 13.8648 22.5105 12.001 22.5105C10.1371 22.5105 8.57099 21.2357 8.12695 19.5105H15.875Z"
+        fill="#C1C8D6"
+      />
     </svg>
   )
 }
