@@ -1,4 +1,4 @@
-import { Share2, Search } from 'lucide-react'
+import { MagnifyingGlassIcon, ShareIcon, Cog6ToothIcon } from '@heroicons/react/24/solid'
 import { AppBar } from '../../components/appbar/AppBar'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -83,7 +83,7 @@ export function AppBarPage() {
             <AppBar
               type="detail"
               rightIcons={[
-                { icon: <Search size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
+                { icon: <MagnifyingGlassIcon style={{ width: 24, height: 24, color: 'var(--color-neutral-400)' }} /> },
               ]}
             />
           </AppBarFrame>
@@ -91,8 +91,8 @@ export function AppBarPage() {
             <AppBar
               type="detail"
               rightIcons={[
-                { icon: <Search size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
-                { icon: <Share2 size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
+                { icon: <MagnifyingGlassIcon style={{ width: 24, height: 24, color: 'var(--color-neutral-400)' }} /> },
+                { icon: <Cog6ToothIcon style={{ width: 24, height: 24, color: 'var(--color-neutral-400)' }} /> },
               ]}
             />
           </AppBarFrame>
@@ -114,7 +114,7 @@ export function AppBarPage() {
               title="페이지 제목"
               showTitle
               rightIcons={[
-                { icon: <Search size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
+                { icon: <ShareIcon style={{ width: 24, height: 24, color: 'var(--color-neutral-400)' }} /> },
               ]}
             />
           </AppBarFrame>
