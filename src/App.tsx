@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import { ButtonPage } from './pages/button/ButtonPage'
+import { CTAButtonPage } from './pages/button/CTAButtonPage'
 
 // ============================================================
 // Types
@@ -26,9 +27,16 @@ const COMPONENTS: ComponentMeta[] = [
   {
     id: 'button',
     name: 'Button',
-    description: '사용자의 액션을 트리거하는 가장 기본적인 인터랙션 요소입니다. Primary, Secondary, Outline, Ghost 4가지 변형을 제공합니다.',
+    description: '사용자의 액션을 트리거하는 가장 기본적인 인터랙션 요소입니다. Primary, Secondary, Outline, Ghost, Danger 5가지 변형을 제공합니다.',
     category: 'Button',
     Page: ButtonPage,
+  },
+  {
+    id: 'cta-button',
+    name: 'CTA Button',
+    description: '화면 하단에 고정되는 주요 액션 버튼입니다. Default, Horizontal, Vertical 3가지 레이아웃 타입을 제공합니다.',
+    category: 'Button',
+    Page: CTAButtonPage,
   },
   // {
   //   id: 'icon-button',
