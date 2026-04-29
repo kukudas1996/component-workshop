@@ -21,23 +21,13 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   )
 }
 
-function MobileFrame({ label, children }: { label: string; children: React.ReactNode }) {
+function PreviewBox({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div
-        style={{
-          borderRadius: '16px',
-          overflow: 'hidden',
-          border: '1px solid var(--color-neutral-200)',
-          boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-          backgroundColor: 'var(--color-neutral-000)',
-        }}
-      >
-        {children}
-      </div>
-      <span style={{ fontSize: '12px', color: 'var(--color-neutral-500)', fontWeight: 500 }}>
-        {label}
-      </span>
+    <div
+      className={`rounded-2xl p-8 ${className}`}
+      style={{ backgroundColor: 'var(--color-neutral-050)' }}
+    >
+      {children}
     </div>
   )
 }
@@ -52,13 +42,16 @@ export function CTAButtonPage() {
   return (
     <div>
       <Section title="Types">
-        <div className="flex items-start gap-8 flex-wrap">
+        <PreviewBox className="flex items-start gap-8 flex-wrap">
           {TYPES.map(({ type, label }) => (
-            <MobileFrame key={type} label={label}>
+            <div key={type} className="flex flex-col items-center gap-3">
               <CTAButton type={type} />
-            </MobileFrame>
+              <span style={{ fontSize: '12px', color: 'var(--color-neutral-500)', fontWeight: 500 }}>
+                {label}
+              </span>
+            </div>
           ))}
-        </div>
+        </PreviewBox>
       </Section>
     </div>
   )
