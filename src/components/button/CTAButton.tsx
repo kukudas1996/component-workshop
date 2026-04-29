@@ -136,12 +136,16 @@ export function CTAButton({
 
         {type === 'horizontal' && (
           <>
-            <Button variant="secondary" size="xl" fullWidth onClick={onSecondaryClick}>
-              {secondaryText}
-            </Button>
-            <Button variant="primary" size="xl" fullWidth onClick={onPrimaryClick}>
-              {primaryText}
-            </Button>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <Button variant="secondary" size="xl" fullWidth onClick={onSecondaryClick}>
+                {secondaryText}
+              </Button>
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <Button variant="primary" size="xl" fullWidth onClick={onPrimaryClick}>
+                {primaryText}
+              </Button>
+            </div>
           </>
         )}
 

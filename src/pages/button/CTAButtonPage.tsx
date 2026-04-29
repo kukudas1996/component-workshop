@@ -21,7 +21,6 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   )
 }
 
-// 모바일 프레임처럼 보이도록 감싸는 래퍼
 function MobileFrame({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col items-center gap-3">
@@ -43,61 +42,22 @@ function MobileFrame({ label, children }: { label: string; children: React.React
   )
 }
 
-const TYPES: { type: CTAButtonType; label: string; props: object }[] = [
-  {
-    type: 'default',
-    label: 'Default',
-    props: { primaryText: '확인' },
-  },
-  {
-    type: 'horizontal',
-    label: 'Horizontal',
-    props: { primaryText: '확인', secondaryText: '취소' },
-  },
-  {
-    type: 'vertical',
-    label: 'Vertical',
-    props: { primaryText: '확인', textLinkText: '나중에' },
-  },
+const TYPES: { type: CTAButtonType; label: string }[] = [
+  { type: 'default',    label: 'Default' },
+  { type: 'horizontal', label: 'Horizontal' },
+  { type: 'vertical',   label: 'Vertical' },
 ]
 
 export function CTAButtonPage() {
   return (
     <div>
-      {/* All types */}
       <Section title="Types">
         <div className="flex items-start gap-8 flex-wrap">
-          {TYPES.map(({ type, label, props }) => (
+          {TYPES.map(({ type, label }) => (
             <MobileFrame key={type} label={label}>
-              <CTAButton type={type} {...props} />
+              <CTAButton type={type} />
             </MobileFrame>
           ))}
-        </div>
-      </Section>
-
-      {/* Without home indicator */}
-      <Section title="Without Home Indicator">
-        <div className="flex items-start gap-8 flex-wrap">
-          {TYPES.map(({ type, label, props }) => (
-            <MobileFrame key={type} label={label}>
-              <CTAButton type={type} showHomeIndicator={false} {...props} />
-            </MobileFrame>
-          ))}
-        </div>
-      </Section>
-
-      {/* Custom text */}
-      <Section title="Custom Text">
-        <div className="flex items-start gap-8 flex-wrap">
-          <MobileFrame label="Default — 주문하기">
-            <CTAButton type="default" primaryText="주문하기" />
-          </MobileFrame>
-          <MobileFrame label="Horizontal — 삭제 / 저장">
-            <CTAButton type="horizontal" primaryText="저장" secondaryText="삭제" />
-          </MobileFrame>
-          <MobileFrame label="Vertical — 신청하기 / 다음에">
-            <CTAButton type="vertical" primaryText="신청하기" textLinkText="다음에 할게요" />
-          </MobileFrame>
         </div>
       </Section>
     </div>
