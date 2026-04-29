@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import { ButtonPage } from './pages/button/ButtonPage'
 import { CTAButtonPage } from './pages/button/CTAButtonPage'
+import { AppBarPage } from './pages/appbar/AppBarPage'
 
 // ============================================================
 // Types
@@ -37,6 +38,13 @@ const COMPONENTS: ComponentMeta[] = [
     description: '화면 하단에 고정되는 주요 액션 버튼입니다. Default, Horizontal, Vertical 3가지 레이아웃 타입을 제공합니다.',
     category: 'Button',
     Page: CTAButtonPage,
+  },
+  {
+    id: 'app-bar',
+    name: 'App Bar',
+    description: '화면 상단에 위치하는 내비게이션 바입니다. Home(1depth)과 Detail(2depth) 두 가지 타입을 제공합니다.',
+    category: 'Navigation',
+    Page: AppBarPage,
   },
   // {
   //   id: 'icon-button',
