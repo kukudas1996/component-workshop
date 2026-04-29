@@ -114,7 +114,7 @@ export function AppBarPage() {
               title="페이지 제목"
               showTitle
               rightIcons={[
-                { icon: <Search size={24} /> },
+                { icon: <Search size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
               ]}
             />
           </AppBarFrame>
