@@ -1,4 +1,4 @@
-import { Bell, Settings, Search } from 'lucide-react'
+import { Share2, Search } from 'lucide-react'
 import { AppBar } from '../../components/appbar/AppBar'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -79,20 +79,20 @@ export function AppBarPage() {
           <AppBarFrame label="뒤로가기만">
             <AppBar type="detail" />
           </AppBarFrame>
-          <AppBarFrame label="아이콘 1개">
+          <AppBarFrame label="다른 아이콘 1개">
             <AppBar
               type="detail"
               rightIcons={[
-                { icon: <Bell size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
+                { icon: <Search size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
               ]}
             />
           </AppBarFrame>
-          <AppBarFrame label="아이콘 2개">
+          <AppBarFrame label="다른 아이콘 2개">
             <AppBar
               type="detail"
               rightIcons={[
-                { icon: <Bell size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
-                { icon: <Settings size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
+                { icon: <Search size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
+                { icon: <Share2 size={24} fill="var(--color-neutral-400)" strokeWidth={0} /> },
               ]}
             />
           </AppBarFrame>
