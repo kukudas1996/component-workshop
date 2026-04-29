@@ -3,7 +3,7 @@ import type { ButtonVariant, ButtonSize } from '../../components/button/Button'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="pt-10 pb-2 border-t border-[var(--color-neutral-100)]">
+    <section className="pt-10 pb-2">
       <h3
         className="mb-6"
         style={{
