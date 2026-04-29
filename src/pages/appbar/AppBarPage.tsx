@@ -1,4 +1,4 @@
-import { Bell, Settings } from 'lucide-react'
+import { Bell, Settings, Search } from 'lucide-react'
 import { AppBar } from '../../components/appbar/AppBar'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
