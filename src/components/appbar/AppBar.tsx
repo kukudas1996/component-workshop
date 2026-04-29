@@ -1,5 +1,31 @@
 import { useState } from 'react'
-import { ChevronLeft, Bell } from 'lucide-react'
+
+// ── Design System Icons ────────────────────────────────────────
+// 피그마 AppBarOutlinedIcon / Back
+// 벡터 위치: bottom-[16.64%] left-0 top-[16.64%] w-[8.695px] in 24×24
+function AppBarBackIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M8.695 3.994L0 12L8.695 20.006"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+// 피그마 AppBarFilledIcon / Noti
+// 벡터 위치: inset-[6.21%_8.62%] in 24×24 (filled bell)
+function AppBarNotiIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5S10.5 3.17 10.5 4v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+    </svg>
+  )
+}
 
 // ── Action Button (우측 아이콘 버튼) ────────────────────────────
 // 48×48 터치 타겟 / 프레스 시 bg-neutral-050 + inner 36px로 축소
@@ -108,7 +134,7 @@ function BackButton({ onClick }: { onClick?: () => void }) {
         transition: 'color 0.1s ease',
       }}
     >
-      <ChevronLeft size={24} strokeWidth={2.2} />
+      <AppBarBackIcon />
     </button>
   )
 }
@@ -168,7 +194,7 @@ export function AppBar({
       {/* ── home (1depth) ── */}
       {type === 'home' && (
         <ActionButton
-          icon={<Bell size={24} fill="currentColor" strokeWidth={0} />}
+          icon={<AppBarNotiIcon />}
           onClick={onNotiClick}
           showDot={notiBadge}
         />
@@ -200,7 +226,7 @@ export function AppBar({
                   lineHeight: '25px',
                   fontWeight: 600,
                   fontFamily: 'Pretendard, sans-serif',
-                  color: 'var(--color-neutral-900)',
+                  color: 'var(--color-neutral-800)',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
